@@ -1,0 +1,70 @@
+body {
+  background-color: #212121;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1d1d1d;
+  color: white;
+  padding: 0 15px;
+}
+
+.logo {
+  font-size: 30px;
+}
+
+.column-full {
+  width: 100%;
+}
+
+.column-fourth {
+  width: 23%;
+}
+
+img {
+  width: 100%;
+  object-position: top;
+  object-fit: cover;
+  height: 36vw;
+}
+
+.anime-deck {
+  display: flex;
+  padding: 0 10px;
+  align-items: center;
+  flex-basis: calc(100% / 3);
+  justify-content: space-around;
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  cursor: pointer;
+}
+
+.links li {
+  margin: 0 15px;
+}
+
+.links a {
+  text-decoration: none;
+  margin-left: 1.5rem;
+  color: white;
+  font-size: 20px;
+}
+
+.search-bar {
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.search-button {
+  cursor: pointer;
+}
+
+h2 {
+  padding: 0 15px;
+  color: white;
+}

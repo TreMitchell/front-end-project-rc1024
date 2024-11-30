@@ -1,10 +1,9 @@
+'use strict';
 /* exported data */
-
-async function fetchAllAnime(): Promise<void> {
+async function fetchAllAnime() {
   const allAnime = [];
   let currentPage = 1;
   const maxPages = 1; // Adjust based on how many pages you want to fetch
-
   try {
     while (currentPage <= maxPages) {
       const response = await fetch(
@@ -15,19 +14,16 @@ async function fetchAllAnime(): Promise<void> {
       }
       const data = await response.json();
       allAnime.push(...data.data); // Combine anime from current page into the main array
-
       // console.log(`Fetched page ${currentPage}`);
       currentPage++;
     }
-
     console.log(allAnime); // Complete list of anime
   } catch (error) {
     console.error('There has been a problem with your fetch operation:', error);
   }
 }
 fetchAllAnime();
-
-async function getAnimeRecommendations(): Promise<void> {
+async function getAnimeRecommendations() {
   const animeRecommendations = [];
   const id = 1;
   try {
@@ -38,15 +34,13 @@ async function getAnimeRecommendations(): Promise<void> {
     const data = await res.json();
     data.data.length = 10;
     animeRecommendations.push(...data.data);
-
     console.log(animeRecommendations);
   } catch (err) {
     console.error('There has been a problem with your fetch operation:', err);
   }
 }
 getAnimeRecommendations();
-
-async function getAnimeSearch(): Promise<void> {
+async function getAnimeSearch() {
   const animeSearch = [];
   try {
     const res = await fetch(`https://api.jikan.moe/v4/anime`);
@@ -54,7 +48,6 @@ async function getAnimeSearch(): Promise<void> {
     const data = await res.json();
     data.data.length = 10;
     animeSearch.push(...data.data);
-
     console.log(animeSearch);
   } catch (err) {
     console.error('There has been a problem with your fetch operation:', err);

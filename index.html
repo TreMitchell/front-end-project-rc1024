@@ -1,20 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <header>
-  </header>
-  <main>
-  </main>
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX Project</title>
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">Aniverse</div>
+        <ul class="links">
+          <li><a href="#">Active</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+        <div class="search-container">
+          <input type="text" class="search-bar" id="search-bar" />
+          <button class="search-button">Search</button>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="column-full">
+        <div class="trending">
+          <h2>Trending</h2>
+        </div>
+        <div class="anime-deck">
+          <div class="column-fourth">
+            <img src="./images/jujutsu_kaisen.jpg" alt="Jujutsu Kaisen" />
+          </div>
+          <div class="column-fourth">
+            <img src="./images/one-punch-man-cover.jpg" alt="One Punch Man" />
+          </div>
+          <div class="column-fourth">
+            <img src="./images/cowboy_bebop.jpg" alt="Cowboy Bebop" />
+          </div>
+          <div class="column-fourth">
+            <img src="./images/initial-d.jpg" alt="Initial D" />
+          </div>
+        </div>
+      </div>
+      <div class="column-full">
+        <div class="recommendations">
+          <h2>Recommendations</h2>
+        </div>
+        <div class="anime-deck">
+          <div class="column-fourth">
+            <img src="./images/dragon-ball-super.jpg" alt="Dragon Ball Super" />
+          </div>
+          <div class="column-fourth">
+            <img src="./images/naruto.jpg" alt="Naruto" />
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
