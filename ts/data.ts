@@ -1,63 +1,32 @@
 /* exported data */
 
-async function fetchAllAnime(): Promise<void> {
-  const allAnime = [];
-  let currentPage = 1;
-  const maxPages = 1; // Adjust based on how many pages you want to fetch
+// Define the type for Anime data (you can extend this based on API response)
+// define a key for local storage
+const key = 'Anime';
 
-  try {
-    while (currentPage <= maxPages) {
-      const response = await fetch(
-        `https://api.jikan.moe/v4/anime?page=${currentPage}`,
-      );
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      allAnime.push(...data.data); // Combine anime from current page into the main array
+const data = {
+  Anime: [] as {
+    mal_id: number; // MyAnimeList ID
+    title: string;
+    url: string;
+    images: { jpg: { image_url: string } }; // Example for image data
+    synopsis: string;
+  }[],
 
-      // console.log(`Fetched page ${currentPage}`);
-      currentPage++;
-    }
+  currentView: 'home', // Default view is the homepage
+};
 
-    console.log(allAnime); // Complete list of anime
-  } catch (error) {
-    console.error('There has been a problem with your fetch operation:', error);
+function saveToLocalStorage(): void {
+  localStorage.setItem(key, JSON.stringify(data.Anime));
+}
+
+saveToLocalStorage();
+
+function loadFromLocalStorage(): void {
+  const storedData = localStorage.getItem(key);
+
+  if (storedData) {
+    data.Anime = JSON.parse(storedData);
   }
 }
-fetchAllAnime();
-
-async function getAnimeRecommendations(): Promise<void> {
-  const animeRecommendations = [];
-  const id = 1;
-  try {
-    const res = await fetch(
-      `https://api.jikan.moe/v4/anime/${id}/recommendations`,
-    );
-    if (!res.ok) throw new Error(`http error! status: ${res.status}`);
-    const data = await res.json();
-    data.data.length = 10;
-    animeRecommendations.push(...data.data);
-
-    console.log(animeRecommendations);
-  } catch (err) {
-    console.error('There has been a problem with your fetch operation:', err);
-  }
-}
-getAnimeRecommendations();
-
-async function getAnimeSearch(): Promise<void> {
-  const animeSearch = [];
-  try {
-    const res = await fetch(`https://api.jikan.moe/v4/anime`);
-    if (!res.ok) throw new Error(`http error! status: ${res.status}`);
-    const data = await res.json();
-    data.data.length = 10;
-    animeSearch.push(...data.data);
-
-    console.log(animeSearch);
-  } catch (err) {
-    console.error('There has been a problem with your fetch operation:', err);
-  }
-}
-getAnimeSearch();
+loadFromLocalStorage();

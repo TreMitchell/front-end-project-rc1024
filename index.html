@@ -20,8 +20,7 @@
       <nav class="navbar">
         <div class="logo">Aniverse</div>
         <ul class="links">
-          <li><a href="#">Active</a></li>
-          <li><a href="#">Link</a></li>
+          <li><a href="#">Saved</a></li>
         </ul>
         <div class="search-container">
           <input type="text" class="search-bar" id="search-bar" />
@@ -30,35 +29,56 @@
       </nav>
     </header>
     <main>
-      <div class="column-full">
-        <div class="trending">
-          <h2>Trending</h2>
-        </div>
-        <div class="anime-deck">
-          <div class="column-fourth">
-            <img src="./images/jujutsu_kaisen.jpg" alt="Jujutsu Kaisen" />
-          </div>
-          <div class="column-fourth">
-            <img src="./images/one-punch-man-cover.jpg" alt="One Punch Man" />
-          </div>
-          <div class="column-fourth">
-            <img src="./images/cowboy_bebop.jpg" alt="Cowboy Bebop" />
-          </div>
-          <div class="column-fourth">
-            <img src="./images/initial-d.jpg" alt="Initial D" />
+      <div class="page-container">
+        <div class="different-views">
+          <div class="tab-container">
+            <div class="tab active" data-view="homepage"></div>
+            <div class="tab" data-view="search-results"></div>
           </div>
         </div>
-      </div>
-      <div class="column-full">
-        <div class="recommendations">
-          <h2>Recommendations</h2>
-        </div>
-        <div class="anime-deck">
-          <div class="column-fourth">
-            <img src="./images/dragon-ball-super.jpg" alt="Dragon Ball Super" />
+        <div class="view-containers">
+          <div class="view" data-view="homepage">
+            <div class="column-full">
+              <div class="trending">
+                <h2>Trending</h2>
+              </div>
+              <div class="anime-deck">
+                <div class="column-fourth">
+                  <img src="./images/jujutsu_kaisen.jpg" alt="Jujutsu Kaisen" />
+                </div>
+                <div class="column-fourth">
+                  <img
+                    src="./images/one-punch-man-cover.jpg"
+                    alt="One Punch Man" />
+                </div>
+                <div class="column-fourth">
+                  <img src="./images/cowboy_bebop.jpg" alt="Cowboy Bebop" />
+                </div>
+                <div class="column-fourth">
+                  <img src="./images/initial-d.jpg" alt="Initial D" />
+                </div>
+              </div>
+            </div>
+            <div class="column-full">
+              <div class="recommendations">
+                <h2>Recommendations</h2>
+              </div>
+              <div class="anime-deck">
+                <div class="column-fourth">
+                  <img
+                    src="./images/dragon-ball-super.jpg"
+                    alt="Dragon Ball Super" />
+                </div>
+                <div class="column-fourth">
+                  <img src="./images/naruto.jpg" alt="Narut" />
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="column-fourth">
-            <img src="./images/naruto.jpg" alt="Naruto" />
+          <div class="view hidden" data-view="search-results">
+            <div id="search-result-modal" class="display-result">
+              <div class="results"></div>
+            </div>
           </div>
         </div>
       </div>
