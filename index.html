@@ -18,7 +18,9 @@
   <body>
     <header>
       <nav class="navbar">
-        <div class="logo">Aniverse</div>
+        <div class="logo">
+          <a href="./index.html">Aniverse</a>
+        </div>
         <ul class="links">
           <li><a href="#">Saved</a></li>
         </ul>
@@ -34,6 +36,7 @@
           <div class="tab-container">
             <div class="tab active" data-view="homepage"></div>
             <div class="tab" data-view="search-results"></div>
+            <div class="tab" data-view="anime-details"></div>
           </div>
         </div>
         <div class="view-containers">
@@ -70,7 +73,7 @@
                     alt="Dragon Ball Super" />
                 </div>
                 <div class="column-fourth">
-                  <img src="./images/naruto.jpg" alt="Narut" />
+                  <img src="./images/naruto.jpg" alt="Naruto" />
                 </div>
               </div>
             </div>
@@ -78,6 +81,12 @@
           <div class="view hidden" data-view="search-results">
             <div id="search-result-modal" class="display-result">
               <div class="results"></div>
+            </div>
+          </div>
+          <div class="view hidden" data-view="anime-details">
+            <div class="anime-details">
+              <h2 class="anime-title"></h2>
+              <p class="anime-description"></p>
             </div>
           </div>
         </div>

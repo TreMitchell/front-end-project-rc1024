@@ -15,6 +15,11 @@ body {
   font-size: 30px;
 }
 
+.logo a {
+  text-decoration: none;
+  color: white;
+}
+
 .column-full {
   width: 100%;
 }
@@ -24,7 +29,6 @@ body {
 }
 
 img {
-  width: 100%;
   object-position: top;
   object-fit: cover;
   height: 36vw;
@@ -38,6 +42,12 @@ img {
   align-items: center;
   flex-basis: calc(100% / 3);
   justify-content: space-around;
+}
+
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .anime-deck:hover,
@@ -80,4 +90,70 @@ h2 {
 
 .hidden {
   display: none;
+}
+
+/* Styling for the anime-details view */
+.anime-details {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.anime-details img.anime-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* .anime-image {
+  width: 100%;
+  object-position: top;
+  object-fit: cover;
+  height: 36vw;
+} */
+
+.anime-details h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.anime-details p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  text-align: justify;
+}
+
+.anime-description {
+  color: white;
+  margin: 0 15px;
+}
+
+.column-fourth img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.column-fourth:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Search results container
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+} */
+.view {
+  padding: 20px;
 }

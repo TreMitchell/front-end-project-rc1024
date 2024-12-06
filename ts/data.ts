@@ -7,7 +7,7 @@ const key = 'Anime';
 const data = {
   Anime: [] as {
     mal_id: number; // MyAnimeList ID
-    title: string;
+    title_english: string;
     url: string;
     images: { jpg: { image_url: string } }; // Example for image data
     synopsis: string;
