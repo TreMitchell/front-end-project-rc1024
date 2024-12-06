@@ -2,12 +2,10 @@
 const $searchButton = document.querySelector('.search-button');
 const $searchInput = document.querySelector('.search-bar') as HTMLInputElement;
 const $animeDeck = document.querySelector('.anime-deck') as HTMLElement;
-const $results = document.querySelector('.results') as HTMLElement;
 
 if (!$searchButton) throw new Error('searchButton query not found!');
 if (!$searchInput) throw new Error('searchInput query not found!');
 if (!$animeDeck) throw new Error('animeDeck query not found!');
-if (!$results) throw new Error('results query not found!');
 
 // View swap doms
 const $tabContainer = document.querySelector('.tab-container');
@@ -18,16 +16,33 @@ if (!$tabContainer) throw new Error('tab-container query not found!');
 if (!$tab) throw new Error('tab query not found!');
 if (!$view) throw new Error('view query not found!');
 
+// Anime description doms
+const $animeDetails = document.querySelector(
+  '.anime-details',
+) as HTMLDivElement;
+const $animeTitle = document.querySelector('.anime-title');
+const $animeDescription = document.querySelector('.anime-description');
+
+if (!$animeDetails) throw new Error('animeDetails query not found!');
+if (!$animeTitle) throw new Error('animeTitle query not found!');
+if (!$animeDescription) throw new Error('animeDescription query not found!');
+
 $searchButton.addEventListener('click', searchAnime);
 
 async function searchAnime(): Promise<void> {
   const searchAnime: any[] = [];
   const letter = $searchInput.value.trim();
+  const $results = document.querySelector('.results') as HTMLElement;
+
+  if (!$results) throw new Error('results query not found!');
 
   if (!letter) {
     console.warn('Search input is empty!');
     return;
   }
+
+  // Clearing the previous search results
+  $results.innerHTML = '';
 
   try {
     const res = await fetch(`https://api.jikan.moe/v4/anime?q=${letter}`);
@@ -36,10 +51,8 @@ async function searchAnime(): Promise<void> {
     }
 
     const data = await res.json();
+    data.data.length = 20;
     searchAnime.push(...data.data);
-
-    // Clearing the previous search results
-    $results.innerHTML = '';
 
     searchAnime.forEach((anime) => {
       const animeTree = renderDomTree(anime);
@@ -48,23 +61,22 @@ async function searchAnime(): Promise<void> {
 
     setTab('search-results');
     setView('search-results');
-
-    console.log('Anime data:', searchAnime);
   } catch (err) {
     console.error('Failed to fetch anime:', err);
   }
 }
 
-// DOM Creation Function
 function renderDomTree(anime: any): HTMLElement {
   const animeDiv = document.createElement('div');
   animeDiv.className = 'column-fourth';
 
-  const animeImg = document.createElement('img');
-  animeImg.src = anime.images.jpg.image_url;
-  animeImg.alt = anime.title;
+  const $animeImg = document.createElement('img');
+  $animeImg.src = anime.images.jpg.image_url;
+  $animeImg.alt = anime.title_english;
 
-  animeDiv.appendChild(animeImg);
+  animeDiv.appendChild($animeImg);
+
+  animeDiv.addEventListener('click', () => displayAnimeDetails(anime));
 
   return animeDiv;
 }
@@ -117,6 +129,37 @@ function setView($selectedView: string): void {
   saveToLocalStorage();
 }
 
+function displayAnimeDetails(anime: any): void {
+  const $animeTitle = document.querySelector('.anime-title') as HTMLElement;
+  const $animeDescription = document.querySelector(
+    '.anime-description',
+  ) as HTMLElement;
+  const $animeDetailsContainer = document.querySelector(
+    '.anime-details',
+  ) as HTMLElement;
+
+  if (!$animeTitle) throw new Error('animeTitle query not found!');
+  if (!$animeDescription) throw new Error('animeDescription query not found!');
+  if (!$animeDetailsContainer)
+    throw new Error('animeDetailsContainer query not found!');
+
+  $animeDetailsContainer.innerHTML = '';
+
+  $animeTitle.textContent = anime.title_english || 'Title not available';
+
+  $animeDescription.textContent =
+    anime.synopsis || 'Description not available.';
+
+  const $imageElement = document.createElement('img');
+  $imageElement.src = anime.images.jpg.image_url;
+  $imageElement.alt = anime.title_english || 'Anime image';
+  $imageElement.className = 'anime-image';
+
+  $animeDetailsContainer.append($imageElement, $animeTitle, $animeDescription);
+
+  setView('anime-details');
+}
+
 async function fetchAllAnime(): Promise<void> {
   const allAnime = [];
   let currentPage = 1;
@@ -133,11 +176,8 @@ async function fetchAllAnime(): Promise<void> {
       const data = await response.json();
       allAnime.push(...data.data); // Combine anime from current page into the main array
 
-      // console.log(`Fetched page ${currentPage}`);
       currentPage++;
     }
-
-    // console.log(allAnime); // Complete list of anime
   } catch (error) {
     console.error('There has been a problem with your fetch operation:', error);
   }
@@ -155,8 +195,6 @@ async function getAnimeRecommendations(): Promise<void> {
     const data = await res.json();
     data.data.length = 10;
     animeRecommendations.push(...data.data);
-
-    // console.log(animeRecommendations);
   } catch (err) {
     console.error('There has been a problem with your fetch operation:', err);
   }

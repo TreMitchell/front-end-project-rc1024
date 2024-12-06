@@ -18,7 +18,9 @@
   <body>
     <header>
       <nav class="navbar">
-        <div class="logo">Aniverse</div>
+        <div class="logo">
+          <a href="./index.html">Aniverse</a>
+        </div>
         <ul class="links">
           <li><a href="#">Saved</a></li>
         </ul>
@@ -34,32 +36,33 @@
           <div class="tab-container">
             <div class="tab active" data-view="homepage"></div>
             <div class="tab" data-view="search-results"></div>
+            <div class="tab" data-view="anime-details"></div>
           </div>
         </div>
         <div class="view-containers">
           <div class="view" data-view="homepage">
             <div class="column-full">
               <div class="trending">
-                <h2>Trending</h2>
+                <h2>New to Anime? I Recommend these Anime</h2>
               </div>
               <div class="anime-deck">
                 <div class="column-fourth">
                   <img src="./images/jujutsu_kaisen.jpg" alt="Jujutsu Kaisen" />
                 </div>
                 <div class="column-fourth">
+                  <img src="./images/spy-x-family.jpg" alt="Spy x Family" />
+                </div>
+                <div class="column-fourth">
+                  <img src="./images/dandadan.jpg" alt="Dandadan" />
+                </div>
+                <div class="column-fourth">
                   <img
-                    src="./images/one-punch-man-cover.jpg"
-                    alt="One Punch Man" />
-                </div>
-                <div class="column-fourth">
-                  <img src="./images/cowboy_bebop.jpg" alt="Cowboy Bebop" />
-                </div>
-                <div class="column-fourth">
-                  <img src="./images/initial-d.jpg" alt="Initial D" />
+                    src="./images/tower-of-god-s2.jpg"
+                    alt="Tower of God Season 2" />
                 </div>
               </div>
             </div>
-            <div class="column-full">
+            <!-- <div class="column-full">
               <div class="recommendations">
                 <h2>Recommendations</h2>
               </div>
@@ -70,14 +73,27 @@
                     alt="Dragon Ball Super" />
                 </div>
                 <div class="column-fourth">
-                  <img src="./images/naruto.jpg" alt="Narut" />
+                  <img src="./images/naruto.jpg" alt="Naruto" />
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="view hidden" data-view="search-results">
             <div id="search-result-modal" class="display-result">
               <div class="results"></div>
+            </div>
+          </div>
+          <div class="view hidden" data-view="anime-details">
+            <div class="anime-details">
+              <div class="row">
+                <div class="column-half">
+                  <img src="" />
+                </div>
+                <div class="column-half">
+                  <h2 class="anime-title"></h2>
+                  <p class="anime-description"></p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
