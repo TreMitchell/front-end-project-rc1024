@@ -2,12 +2,10 @@
 const $searchButton = document.querySelector('.search-button');
 const $searchInput = document.querySelector('.search-bar') as HTMLInputElement;
 const $animeDeck = document.querySelector('.anime-deck') as HTMLElement;
-const $results = document.querySelector('.results') as HTMLElement;
 
 if (!$searchButton) throw new Error('searchButton query not found!');
 if (!$searchInput) throw new Error('searchInput query not found!');
 if (!$animeDeck) throw new Error('animeDeck query not found!');
-if (!$results) throw new Error('results query not found!');
 
 // View swap doms
 const $tabContainer = document.querySelector('.tab-container');
@@ -34,13 +32,16 @@ $searchButton.addEventListener('click', searchAnime);
 async function searchAnime(): Promise<void> {
   const searchAnime: any[] = [];
   const letter = $searchInput.value.trim();
+  const $results = document.querySelector('.results') as HTMLElement;
+
+  if (!$results) throw new Error('results query not found!');
 
   if (!letter) {
     console.warn('Search input is empty!');
     return;
   }
-  // Clearing the previous search results
 
+  // Clearing the previous search results
   $results.innerHTML = '';
 
   try {
@@ -50,7 +51,7 @@ async function searchAnime(): Promise<void> {
     }
 
     const data = await res.json();
-    data.data.length = 10;
+    data.data.length = 20;
     searchAnime.push(...data.data);
 
     searchAnime.forEach((anime) => {
@@ -65,7 +66,6 @@ async function searchAnime(): Promise<void> {
   }
 }
 
-// DOM Creation Function
 function renderDomTree(anime: any): HTMLElement {
   const animeDiv = document.createElement('div');
   animeDiv.className = 'column-fourth';
@@ -157,9 +157,7 @@ function displayAnimeDetails(anime: any): void {
 
   $animeDetailsContainer.append($imageElement, $animeTitle, $animeDescription);
 
-  setView('.anime-details');
-
-  document.body.append($imageElement, $animeTitle, $animeDescription);
+  setView('anime-details');
 }
 
 async function fetchAllAnime(): Promise<void> {

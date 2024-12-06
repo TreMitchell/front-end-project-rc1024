@@ -3,11 +3,9 @@
 const $searchButton = document.querySelector('.search-button');
 const $searchInput = document.querySelector('.search-bar');
 const $animeDeck = document.querySelector('.anime-deck');
-const $results = document.querySelector('.results');
 if (!$searchButton) throw new Error('searchButton query not found!');
 if (!$searchInput) throw new Error('searchInput query not found!');
 if (!$animeDeck) throw new Error('animeDeck query not found!');
-if (!$results) throw new Error('results query not found!');
 // View swap doms
 const $tabContainer = document.querySelector('.tab-container');
 const $tab = document.querySelectorAll('.tab');
@@ -26,6 +24,8 @@ $searchButton.addEventListener('click', searchAnime);
 async function searchAnime() {
   const searchAnime = [];
   const letter = $searchInput.value.trim();
+  const $results = document.querySelector('.results');
+  if (!$results) throw new Error('results query not found!');
   if (!letter) {
     console.warn('Search input is empty!');
     return;
@@ -38,7 +38,7 @@ async function searchAnime() {
       throw new Error(`HTTP Error! Status: ${res.status}`);
     }
     const data = await res.json();
-    data.data.length = 10;
+    data.data.length = 20;
     searchAnime.push(...data.data);
     searchAnime.forEach((anime) => {
       const animeTree = renderDomTree(anime);
@@ -50,7 +50,6 @@ async function searchAnime() {
     console.error('Failed to fetch anime:', err);
   }
 }
-// DOM Creation Function
 function renderDomTree(anime) {
   const animeDiv = document.createElement('div');
   animeDiv.className = 'column-fourth';
@@ -120,8 +119,7 @@ function displayAnimeDetails(anime) {
   $imageElement.alt = anime.title_english || 'Anime image';
   $imageElement.className = 'anime-image';
   $animeDetailsContainer.append($imageElement, $animeTitle, $animeDescription);
-  setView('.anime-details');
-  document.body.append($imageElement, $animeTitle, $animeDescription);
+  setView('anime-details');
 }
 async function fetchAllAnime() {
   const allAnime = [];
