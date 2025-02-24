@@ -1,4 +1,4 @@
-# front-end-project
+# AniVerse
 
 An anime collection that searches your favorite anime.
 
